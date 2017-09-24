@@ -4,7 +4,7 @@ import os
 
 
 def generate_response(code, code_text, content):
-    return "HTTP/1.1 " + str(code) + code_text + "\n" \
+    return "HTTP/1.1 " + str(code) + ' ' + code_text + "\n" \
            "Content-Type: text/plain; encoding=utf8\n" \
            "Content-Length: " + str(len(content)) + "\n" \
            "Connection: closed\n\n" + content
@@ -29,7 +29,7 @@ def get_response(request):
             if not os.path.isfile('./files/' + request_dir[2]):
                 return generate_response(404, "Not found", "File not found\n")
             f = open('./files/' + request_dir[2], 'r')
-            return generate_response(200, "OK\n", ''.join(f.readlines()))
+            return generate_response(200, "OK", ''.join(f.readlines()))
         files = [f for f in os.listdir('./files') if os.path.isfile('./files/' + f)]
         print files
         return generate_response(200, "OK", ' '.join(files))
