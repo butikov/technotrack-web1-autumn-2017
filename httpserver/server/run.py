@@ -14,7 +14,7 @@ def get_response(request):
     request = request.split('\r\n')
     request_header = request[0].split(' ')
     print request
-    if len(request_header) < 2:
+    if len(request_header) < 3:
         return generate_response(400, "Bad Request", "Not enough arguments")
     if request_header[0] != 'GET':
         return generate_response(405, "Method Not Allowed", "Only GET is allowed here\n")
